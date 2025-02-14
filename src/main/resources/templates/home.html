@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Listograma</title>
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}"/>
+	<link rel="shortcut icon" href="src/main/resources/favicon.ico"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+		crossorigin="anonymous">
+
+	<style>
+	.modal {
+		width: 300px;
+	}
+
+	.modal-content {
+		width: 300px;
+	}
+
+	.list-group-item:hover {
+		background-color: rgba(59, 57, 57, 0.164);
+	}
+	</style>
+</head>
+
+<body>
+	<nav class="navbar navbar-dark bg-dark">
+		<div class="container-fluid">
+			<button class="navbar-toggler" type="button" data-bs-toggle="modal"
+				data-bs-target="#exampleModal">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<span class="navbar-brand mb-0"><h2>Volkswagen Job
+					Description</h2></span> <a class="navbar-brand mt-2 mt-lg-0" href="/logout"> <img
+				src="https://cdn.discordapp.com/attachments/611912621418872844/871157919373205534/LOLOGOGOGOOG1.png"
+				height="55" alt="" />
+			</a>
+
+		</div>
+	</nav>
+
+	<main class="container">
+		<div class="jumbotron">
+			<h1>Listograma</h1>
+		</div>
+		<div class="modal true" id="exampleModal" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-fullscreen">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">MENU</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+
+						<ul class="list-group list-group-flush">
+							<li class="btn btn-s btn-dark"
+								onclick="window.location.href = '/home';">LISTOGRAMA</li>
+							<p>
+							<li class="btn btn-s btn-outline-dark" onclick="window.location.href = '/arquivamento';">ARQUIVAMENTO</li>
+							<p>
+							<li class="btn btn-s btn-outline-dark"
+								onclick="window.location.href = '/controleforms';">CONTROLE
+								DOS FORMULÁRIOS</li>
+							<p>
+							<li class="btn btn-s btn-outline-dark"
+								onclick="window.location.href = '/organograma';">ORGANOGRAMA</li>
+
+						</ul>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary"
+							data-bs-dismiss="modal">Fechar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="d-flex">
+			<div class="mr-auto">
+				<form action="/cadastrofunc" class="my-2 my-lg-0">
+					<button class="btn btn-info" type="submit">Cadastrar Funcionário</button>
+				</form>
+			</div>
+
+			<div class="ml-auto p-2">
+				<form class="form-inline my-2 my-lg-0" method="get" th:action="@{/home}">
+					<input class="form-control mr-sm-2" type="text" name="keyword" placeholder="Buscar" aria-label="Search">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+				</form>
+			</div>
+		</div>
+
+		<div class="d-flex mt-2">
+			<input type="file" id="excel_file"/>
+		</div>
+
+		<div>
+			<div class="panel-body mt-3">
+				<table class="table table-hover text-align: center">
+					<thead class="thead-dark">
+						<tr>
+							<th>UO</th>
+							<th>Nome</th>
+							<th>Nº Pessoal</th>
+							<th>Cargo</th>
+							<th>Ramal</th>
+							<th>CPI</th>
+							<th>Custo</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="employee : ${employees}">
+							<td th:text="${employee.ouDep}"></td>
+							<td th:text="${employee.name}"></td>
+							<td th:text="${employee.employeeId}"></td>
+							<td th:text="${employee.office}"></td>
+							<td th:text="${employee.phoneExt}"></td>
+							<td th:text="${employee.cpi}"></td>
+							<td th:text="${employee.cost}"></td>
+						</tr>
+					</tbody>
+					<tfoot id="excel_data"></tfoot>
+				</table>
+			</div>
+		</div>
+
+	</main>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
+
+<script>
+	const excel_file = document.getElementById('excel_file');
+	excel_file.addEventListener('change', (event) => {
+
+		if(!['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'].includes(event.target.files[0].type))
+		{
+			document.getElementById('excel_data').innerHTML = '<div class="alert alert-danger">Only .xlsx or .xls file format are allowed</div>';
+			excel_file.value = '';
+			return false;
+		}
+
+		var reader = new FileReader();
+		reader.readAsArrayBuffer(event.target.files[0]);
+		reader.onload = function(event){
+
+			var data = new Uint8Array(reader.result);
+			var work_book = XLSX.read(data, {type:'array'});
+			var sheet_name = work_book.SheetNames;
+			var sheet_data = XLSX.utils.sheet_to_json(work_book.Sheets[sheet_name[0]], {header:1});
+			if(sheet_data.length > 0)
+			{
+				var table_output = '<table class="table table-hover text-align: center">';
+				for(var row = 0; row < sheet_data.length; row++)
+				{
+					table_output += '<tr>';
+					for(var cell = 0; cell < sheet_data[row].length; cell++)
+					{
+
+							table_output += '<td>'+sheet_data[row][cell]+'</td>';
+
+					}
+					table_output += '</tr>';
+				}
+				table_output += '</table>';
+				document.getElementById('excel_data').innerHTML = table_output;
+			}
+			excel_file.value = '';
+		}
+	});
+</script>

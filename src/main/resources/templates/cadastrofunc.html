@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="widthdevice-width" />
+<title>Cadastro de Funcionário</title>
+
+
+<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}"
+	rel="stylesheet" />
+<link rel="shortcut icon" href="src/main/resources/favicon.ico">
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<h1>Cadastrar novo funcionário</h1>
+		</div>
+
+		<div class="container">
+
+			<form th:object="${JobModelLogin}" th:action="@{/salvarfunc}"
+				method="post">
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<h3 for="inputEmail4">Nome do Funcionário</h3>
+						<input type="text" class="form-control" id="nome" name="nome"
+							required>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-4">
+						<label for="inputAddress">Endereço</label> <input type="text"
+							required class="form-control" id="endereco" name="endereco">
+					</div>
+					<div class="form-group col-md-2">
+						<label for="inputAddress">Nº</label> <input type="number"
+							name="numeroe" required class="form-control" id="numeroe">
+					</div>
+					<div class="form-group col-md-2">
+						<label for="inputAddress">Cidade</label> <input type="text"
+							name="cidade" required class="form-control" id="cidade">
+					</div>
+					<div class="form-group col-md-2">
+						<label for="inputState">Estado</label> <select id="estado"
+							name="estado" class="form-control">
+							<option selected value="SP">SP</option>
+							<option value="RJ">RJ</option>
+							<option value="MG">MG</option>
+						</select>
+					</div>
+					<div class="form-group col-md-2">
+						<label for="inputAddress">CEP</label> <input type="number"
+							name="cep" required class="form-control" id="cep">
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-4">
+						<label for="inputCity">CPF</label> <input type="number" name="cpf"
+							required class="form-control" id="cpf">
+					</div>
+					<div class="form-group col-md-4">
+						<label for="inputAddress">RG</label> <input type="number"
+							name="rg" required class="form-control" id="rg">
+					</div>
+					<div class="form-group col-md-4">
+						<label for="inputAddress">Data de Nascimento</label> <input
+							required type="date" class="form-control" id="datanasc"
+							name="datanasc">
+					</div>
+
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="inputCity">Email</label> <input type="email" required
+							class="form-control" id="email" name="email">
+					</div>
+
+					<div class="form-group col-md-6">
+						<label for="inputAddress">Celular</label> <input required
+							type="tel" class="form-control" maxlength="11" id="celular"
+							name="celular">
+					</div>
+
+				</div>
+
+				<div class="form-row">
+
+					<div class="form-group col-md-3">
+						<label for="inputAddress">UO</label> <input type="text"
+							name="uo" required class="form-control" id="uo">
+					</div>
+					<div class="form-group col-md-3">
+						<label for="inputAddress">Abreviação</label> <input required
+							type="text" class="form-control" id="valorint" name="valorint">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="inputAddress">Nomenclatura</label> <input type="text"
+							name="nomenclatura" required class="form-control" id="nomenclatura">
+					</div>
+
+				</div>
+				<div class="form-row">
+				
+				<div class="form-group col-md-4">
+						<label for="inputAddress">Cargo</label> <input type="text"
+							name="cargo" required class="form-control" id="cargo">
+					</div>
+					<div class="form-group col-md-4">
+						<label for="inputAddress">Ramal</label> <input type="text"
+							name="ramal" required class="form-control" id="ramal">
+					</div>
+				<div class="form-group col-md-4">
+						<label for="inputAddress">Nº Pessoal</label> <input type="text"
+							name="numerope" required class="form-control" id="numerope">
+					</div>
+					<div class="form-group col-md-3">
+						<label for="inputAddress">Definir uma senha</label> <input type="text"
+							name="senha" required class="form-control" id="senha">
+					</div>
+				</div>
+				<div class="mb-3 col-lg-15" style="text-align: right">
+
+					<button type="submit" class="btn btn-info">Salvar</button>
+				</div>
+			</form>
+		</div>
+		<script th:src="@{/webjars/jquery/jquery.min.js}">
+			
+		</script>
+		<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}">
+			
+		</script>
+	</div>
+</body>
+</html>

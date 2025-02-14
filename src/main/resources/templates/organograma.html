@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org/%22%3E">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="widthdevice-width" />
+<title>Organograma</title>
+<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}"
+	rel="stylesheet" />
+<link rel="shortcut icon" href="src/main/resources/favicon.ico">
+<link rel="stylesheet" type="text/css" href="css/teste.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+<style>
+	.modal{
+	width: 300px;
+	}
+	.modal-content{
+	width: 300px;
+	}
+	.list-group-item:hover{
+		background-color:rgba(59, 57, 57, 0.164);
+	}
+</style>
+
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark" >
+
+
+  <div class="container-fluid">
+  <button class="navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <span class="navbar-brand mb-0"><h2>Volkswagen Job Description</h2></span>
+<a class="navbar-brand mt-2 mt-lg-0" href="/logout">
+        <img
+          src="https://cdn.discordapp.com/attachments/611912621418872844/871157919373205534/LOLOGOGOGOOG1.png"
+          height="55"
+          alt=""
+        />
+      </a>
+    
+  </div>
+</nav>
+<div class="container">
+		<div class="jumbotron">
+			<h1>Organograma</h1>
+		</div>
+<div class="modal true" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">MENU</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+	
+        <ul class="list-group list-group-flush">
+          <li class="btn btn-s btn-outline-dark"  onclick="window.location.href = '/home';" >LISTOGRAMA</li>
+          <p>
+            <li class="btn btn-s btn-outline-dark" onclick="window.location.href = '/arquivamento';">ARQUIVAMENTO</li>
+          <p>
+          <li class="btn btn-s btn-outline-dark" onclick="window.location.href = '/controleforms';">CONTROLE DOS FORMULÁRIOS</li>
+          <p>
+          
+          <li class="btn btn-s btn-dark" onclick="window.location.href = '/organograma';" >ORGANOGRAMA</li>
+          
+        </ul>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tree">
+          <ul>
+              <li><a href="/organograma/primeiro">
+                  <img src="https://cdn.discordapp.com/attachments/896088422899400704/914255560218644480/testezinho.jpeg" alt="" ><span>B-Fi</span></a>
+              		
+                  <ul>
+                      <li><a href="/organograma/segundo">
+                          <img src="https://cdn.discordapp.com/attachments/896088422899400704/914257529163378779/unknown.png" alt=""><span>B-Fip</span></a>
+
+                      </li>
+                      <li><a href="/organograma/terceiro">
+                          <img src="https://cdn.discordapp.com/attachments/896088422899400704/914257497026601020/unknown.png" alt=""><span>B-Fix</span></a>
+                          <ul>
+                              <li>
+                                  <a href="#"><img src="https://cdn.discordapp.com/attachments/896088422899400704/914257559085535262/unknown.png" alt=""></a></li>
+                          </ul>
+                      </li>
+                      <li>
+                            <a href="/organograma/quarto"><img src="https://cdn.discordapp.com/attachments/896088422899400704/914257461911887942/unknown.png" alt=""><span>B-Fia</span></a>
+                      <li>
+                            <a href="/organograma/quinto"><img src="https://cdn.discordapp.com/attachments/896088422899400704/914257423873744928/unknown.png" alt=""><span>B-Fig</span></a>
+
+                      <li>
+                            <a href="/organograma/sexto"><img src="https://cdn.discordapp.com/attachments/896088422899400704/914257600017756190/unknown.png" alt=""><span>B-Fio</span></a>
+                      <ul>
+                          <li>
+                              <a href="/organograma/setimo"><img src="https://cdn.discordapp.com/attachments/896088422899400704/914257623988207677/unknown.png" alt=""><span>B-Fio*4</span></a>
+                              <ul>
+                                <li>
+                                    <a href="#"><img src="https://cdn.discordapp.com/attachments/896088422899400704/914257649007218708/unknown.png" alt=""></a></li>
+                              </ul>
+                          </li>
+
+                      </ul>
+                    </li>
+                      <li>
+                          <a href="#">
+                              <img src="https://cdn.discordapp.com/attachments/896088422899400704/914257695358451742/unknown.png" alt=""></a></li>
+                                                  
+                  </ul>
+                 </li>
+              </ul>
+        </div>
+      </div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</html>
