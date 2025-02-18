@@ -16,7 +16,7 @@ import java.util.List;
 public class FormService {
 
     @Autowired
-    private final DepartmentRepository repository;
+    private DepartmentRepository repository;
 
     public List<Department> listDepartment(){
         return repository.findAll();

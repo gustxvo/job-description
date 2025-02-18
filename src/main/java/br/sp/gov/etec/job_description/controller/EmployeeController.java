@@ -19,7 +19,7 @@ import java.util.Optional;
 public class EmployeeController {
 
     @Autowired
-    private final EmployeeService service;
+    private EmployeeService service;
 
     @GetMapping("home")
     public String listEmployees(Model model, @Param("keyword") String keyword){

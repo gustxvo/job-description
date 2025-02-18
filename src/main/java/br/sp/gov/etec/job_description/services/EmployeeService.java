@@ -14,7 +14,7 @@ import java.util.Optional;
 public class EmployeeService {
 
     @Autowired
-    private final EmployeeRepository repository;
+    private EmployeeRepository repository;
 
     public Employee saveEmployee(Employee employee){
         return repository.save(employee);

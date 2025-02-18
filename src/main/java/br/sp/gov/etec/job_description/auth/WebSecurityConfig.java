@@ -6,54 +6,59 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
 @AllArgsConstructor
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig {
 
     @Autowired
-    private final UserService userDetailsService;
-
+    private UserService userDetailsService;
 
 
     @Autowired
     AuthenticationSuccessHandler successHandler;
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authenticationProvider());
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
+                        .requestMatchers("/login").permitAll()
+                        .requestMatchers("/AkvPlus").authenticated()
+                        .requestMatchers(
+                                "/home",
+                                "/organograma",
+                                "/controleforms",
+                                "/cadastrofunc",
+                                "organograma/**"
+                        ).hasAuthority("ADMIN")
+                        .anyRequest().authenticated()
+                )
+                .rememberMe(Customizer.withDefaults())
+                .formLogin(formLogin -> formLogin.loginPage("/login")
+                        .usernameParameter("user_id")
+                        .successHandler(successHandler))
+                .logout(Customizer.withDefaults());
+
+        return http.build();
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/AkvPlus").authenticated()
-                .antMatchers("/home",
-                        "/organograma",
-                        "/controleforms",
-                        "/cadastrofunc",
-                        "organograma/**").hasAuthority("ADMIN")
-                .and()
-                .rememberMe()
-                .and()
-                .formLogin().loginPage("/login")
-                .successHandler(successHandler)
-                .usernameParameter("user_id")
-                .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login");
+    @Bean
+    public AuthenticationManager authManager(HttpSecurity http) throws Exception {
+        AuthenticationManagerBuilder authenticationManagerBuilder =
+                http.getSharedObject(AuthenticationManagerBuilder.class);
+        authenticationManagerBuilder.authenticationProvider(authenticationProvider());
+        return authenticationManagerBuilder.build();
     }
 
     @Bean
@@ -67,10 +72,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    @Override
-    public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/static/**");
     }
 }

@@ -4,12 +4,12 @@ import br.sp.gov.etec.job_description.model.Employee;
 import br.sp.gov.etec.job_description.model.User;
 import br.sp.gov.etec.job_description.repository.EmployeeRepository;
 import br.sp.gov.etec.job_description.repository.UserRepository;
+import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -17,10 +17,10 @@ import java.util.List;
 public class MainController {
 
 	@Autowired
-	private final UserRepository userRepository;
+	private UserRepository userRepository;
 
 	@Autowired
-	private final EmployeeRepository eRepository;
+	private EmployeeRepository eRepository;
 
 	@GetMapping("/users")
 	public List<User> users() {

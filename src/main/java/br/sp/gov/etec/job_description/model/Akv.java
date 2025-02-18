@@ -3,7 +3,7 @@ package br.sp.gov.etec.job_description.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @SuppressWarnings("LombokDataInspection")
 @Entity

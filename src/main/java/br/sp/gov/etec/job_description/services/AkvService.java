@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class AkvService {
 
     @Autowired
-    private final AkvRepository repository;
+    private AkvRepository repository;
 
     public void saveForm(Akv akv){
         repository.save(akv);
