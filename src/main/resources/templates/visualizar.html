@@ -44,7 +44,7 @@
 			<input class="btn btn-info" type="button" value="Imprimir" onClick="CriaPDF()">
 		</div>
 		<div class="container mt-4">
-			<form th:object="${akv}" th:action="@{/voltar}" method="post">
+			<form th:object="${report}" th:action="@{/voltar}" method="post">
 				<input type="hidden" th:field="*{id}">
 				<div class="form-row">
 					<div class="form-group col-md-7">

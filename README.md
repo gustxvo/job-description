@@ -4,9 +4,12 @@
 
 # Job Description
 
-> Este projeto é utilizado apenas como modelo para exercitar competências técnicas. A primeira versão, desenvolvida como TCC da Etec Jorge Street, pode ser encontrada [aqui](https://github.com/gustxvo/job-description/tree/legacy).
+> Este projeto é utilizado apenas como modelo para exercitar a correção de bugs e trabalhar com projeto legado. A
+> primeira versão, desenvolvida como TCC da Etec Jorge Street, pode ser
+> encontrada [aqui](https://github.com/gustxvo/job-description/tree/legacy).
 
-Aplicação Web para o controle de funcionários desenvolvido para gerenciar dados de colaboradores, estruturas hierárquicas, cargos e departamentos dentro de uma organização.
+Aplicação Web para o controle de funcionários desenvolvido para gerenciar dados de colaboradores, estruturas
+hierárquicas, cargos e departamentos numa organização.
 
 ---
 
@@ -32,7 +35,8 @@ Aplicação Web para o controle de funcionários desenvolvido para gerenciar dad
 
 ## 🚀 Roadmap
 
-O roadmap a seguir apresenta as iniciativas planejadas para a evolução do projeto, visando a melhoria na organização, manutenção e performance do código:
+O roadmap a seguir apresenta as iniciativas planejadas para a evolução do projeto, visando a melhoria na organização,
+manutenção e performance do código:
 
 - [ ] Desacoplamento das Camadas de Domínio, Persistência e Apresentação
 - [ ] Solução Escalável para Produção de Documentos
