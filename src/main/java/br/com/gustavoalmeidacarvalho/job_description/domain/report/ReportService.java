@@ -1,7 +1,5 @@
-package br.com.gustavoalmeidacarvalho.job_description.services;
+package br.com.gustavoalmeidacarvalho.job_description.domain.report;
 
-import br.com.gustavoalmeidacarvalho.job_description.model.Report;
-import br.com.gustavoalmeidacarvalho.job_description.repository.ReportRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

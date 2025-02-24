@@ -1,4 +1,4 @@
-package br.com.gustavoalmeidacarvalho.job_description.auth;
+package br.com.gustavoalmeidacarvalho.job_description.config.auth;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

@@ -1,8 +1,6 @@
-package br.com.gustavoalmeidacarvalho.job_description.services;
+package br.com.gustavoalmeidacarvalho.job_description.domain.user;
 
-import br.com.gustavoalmeidacarvalho.job_description.auth.AppUserDetails;
-import br.com.gustavoalmeidacarvalho.job_description.model.User;
-import br.com.gustavoalmeidacarvalho.job_description.repository.UserRepository;
+import br.com.gustavoalmeidacarvalho.job_description.config.auth.AppUserDetails;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

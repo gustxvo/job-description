@@ -1,7 +1,5 @@
-package br.com.gustavoalmeidacarvalho.job_description.services;
+package br.com.gustavoalmeidacarvalho.job_description.domain.user;
 
-import br.com.gustavoalmeidacarvalho.job_description.model.Employee;
-import br.com.gustavoalmeidacarvalho.job_description.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +14,7 @@ public class EmployeeService {
     @Autowired
     private EmployeeRepository repository;
 
-    public Employee saveEmployee(Employee employee){
+    public UserRepository.Employee saveEmployee(UserRepository.Employee employee){
         return repository.save(employee);
     }
 
@@ -24,15 +22,15 @@ public class EmployeeService {
 //        return repository.saveAll(employees);
 //    }
 
-    public List<Employee> listEmployees(){
-        return (List<Employee>) repository.findAll();
+    public List<UserRepository.Employee> listEmployees(){
+        return (List<UserRepository.Employee>) repository.findAll();
     }
 
-    public Optional<Employee> getEmployee(String employeeId){
+    public Optional<UserRepository.Employee> getEmployee(String employeeId){
         return repository.findById(employeeId);
     }
 
-    public List<Employee> searchEmployees(String keyword){
+    public List<UserRepository.Employee> searchEmployees(String keyword){
         return repository.searchEmployees(keyword);
     }
 

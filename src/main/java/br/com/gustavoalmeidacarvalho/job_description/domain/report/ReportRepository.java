@@ -1,6 +1,5 @@
-package br.com.gustavoalmeidacarvalho.job_description.repository;
+package br.com.gustavoalmeidacarvalho.job_description.domain.report;
 
-import br.com.gustavoalmeidacarvalho.job_description.model.Report;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

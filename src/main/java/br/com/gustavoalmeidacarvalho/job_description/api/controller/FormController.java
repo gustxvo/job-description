@@ -1,7 +1,7 @@
-package br.com.gustavoalmeidacarvalho.job_description.controller;
+package br.com.gustavoalmeidacarvalho.job_description.api.controller;
 
-import br.com.gustavoalmeidacarvalho.job_description.model.Report;
-import br.com.gustavoalmeidacarvalho.job_description.repository.ReportRepository;
+import br.com.gustavoalmeidacarvalho.job_description.domain.report.Report;
+import br.com.gustavoalmeidacarvalho.job_description.domain.report.ReportRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,6 +1,6 @@
-package br.com.gustavoalmeidacarvalho.job_description.controller;
+package br.com.gustavoalmeidacarvalho.job_description.api.controller;
 
-import br.com.gustavoalmeidacarvalho.job_description.services.EmployeeService;
+import br.com.gustavoalmeidacarvalho.job_description.domain.user.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;

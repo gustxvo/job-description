@@ -1,11 +1,11 @@
-package br.com.gustavoalmeidacarvalho.job_description.controller;
+package br.com.gustavoalmeidacarvalho.job_description.api.controller;
 
-import br.com.gustavoalmeidacarvalho.job_description.model.Report;
-import br.com.gustavoalmeidacarvalho.job_description.repository.ReportRepository;
-import br.com.gustavoalmeidacarvalho.job_description.repository.DepartmentRepository;
-import br.com.gustavoalmeidacarvalho.job_description.repository.EmployeeRepository;
-import br.com.gustavoalmeidacarvalho.job_description.services.ReportService;
-import br.com.gustavoalmeidacarvalho.job_description.services.FormService;
+import br.com.gustavoalmeidacarvalho.job_description.domain.report.Report;
+import br.com.gustavoalmeidacarvalho.job_description.domain.report.ReportRepository;
+import br.com.gustavoalmeidacarvalho.job_description.domain.department.DepartmentRepository;
+import br.com.gustavoalmeidacarvalho.job_description.domain.user.EmployeeRepository;
+import br.com.gustavoalmeidacarvalho.job_description.domain.report.ReportService;
+import br.com.gustavoalmeidacarvalho.job_description.domain.department.FormService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;

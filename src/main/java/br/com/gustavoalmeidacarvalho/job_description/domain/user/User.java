@@ -1,4 +1,4 @@
-package br.com.gustavoalmeidacarvalho.job_description.model;
+package br.com.gustavoalmeidacarvalho.job_description.domain.user;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

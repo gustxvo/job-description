@@ -1,6 +1,5 @@
-package br.com.gustavoalmeidacarvalho.job_description.model;
+package br.com.gustavoalmeidacarvalho.job_description.domain.department;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

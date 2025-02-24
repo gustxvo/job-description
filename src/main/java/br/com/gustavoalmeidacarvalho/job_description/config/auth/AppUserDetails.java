@@ -1,6 +1,6 @@
-package br.com.gustavoalmeidacarvalho.job_description.auth;
+package br.com.gustavoalmeidacarvalho.job_description.config.auth;
 
-import br.com.gustavoalmeidacarvalho.job_description.model.User;
+import br.com.gustavoalmeidacarvalho.job_description.domain.user.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

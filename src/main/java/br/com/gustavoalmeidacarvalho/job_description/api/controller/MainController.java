@@ -1,9 +1,8 @@
-package br.com.gustavoalmeidacarvalho.job_description.controller;
+package br.com.gustavoalmeidacarvalho.job_description.api.controller;
 
-import br.com.gustavoalmeidacarvalho.job_description.model.Employee;
-import br.com.gustavoalmeidacarvalho.job_description.model.User;
-import br.com.gustavoalmeidacarvalho.job_description.repository.EmployeeRepository;
-import br.com.gustavoalmeidacarvalho.job_description.repository.UserRepository;
+import br.com.gustavoalmeidacarvalho.job_description.domain.user.User;
+import br.com.gustavoalmeidacarvalho.job_description.domain.user.EmployeeRepository;
+import br.com.gustavoalmeidacarvalho.job_description.domain.user.UserRepository;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +27,8 @@ public class MainController {
 	}
 
 	@GetMapping("/employees")
-	public List<Employee> e() {
-		return (List<Employee>) eRepository.findAll();
+	public List<UserRepository.Employee> e() {
+		return (List<UserRepository.Employee>) eRepository.findAll();
 	}
 
 	@GetMapping("/id")
