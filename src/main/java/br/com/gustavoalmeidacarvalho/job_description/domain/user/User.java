@@ -33,6 +33,9 @@ public class User {
     @Column(nullable = false)
     private boolean enabled;
 
+    public User() {
+    }
+
     public User(String userId, String password, String role, boolean locked, boolean enabled) {
         super();
         this.userId = userId;

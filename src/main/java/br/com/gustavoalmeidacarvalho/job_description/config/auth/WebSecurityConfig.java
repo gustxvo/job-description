@@ -16,6 +16,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.HeaderWriterLogoutHandler;
+import org.springframework.security.web.header.writers.ClearSiteDataHeaderWriter;
 
 @Configuration
 @EnableWebSecurity
@@ -33,8 +35,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
-                        .requestMatchers("/login").permitAll()
-                        .requestMatchers("/AkvPlus").authenticated()
+                        .requestMatchers("/report").authenticated()
                         .requestMatchers(
                                 "/home",
                                 "/organograma",
@@ -45,10 +46,10 @@ public class WebSecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .rememberMe(Customizer.withDefaults())
-                .formLogin(formLogin -> formLogin.loginPage("/login")
+                .formLogin(formLogin -> formLogin
+//                        formLogin.loginPage("/login")
                         .usernameParameter("user_id")
-                        .successHandler(successHandler))
-                .logout(Customizer.withDefaults());
+                        .successHandler(successHandler));
 
         return http.build();
     }
