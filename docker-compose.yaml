@@ -1,0 +1,13 @@
+services:
+  db:
+    image: mysql:9.2.0
+    environment:
+      MYSQL_DATABASE: job_description
+      MYSQL_ROOT_PASSWORD: root
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - data:/var/lib/mysql
+volumes:
+  data:
