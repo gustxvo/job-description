@@ -1,4 +1,4 @@
-package br.com.gustavoalmeidacarvalho.job_description.domain.user;
+package br.com.gustavoalmeidacarvalho.job_description.domain.user.employee;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +12,9 @@ import java.util.Optional;
 public class EmployeeService {
 
     @Autowired
-    private EmployeeRepository repository;
+    private br.com.gustavoalmeidacarvalho.job_description.domain.user.employee.EmployeeRepository repository;
 
-    public UserRepository.Employee saveEmployee(UserRepository.Employee employee){
+    public br.com.gustavoalmeidacarvalho.job_description.domain.user.employee.Employee saveEmployee(br.com.gustavoalmeidacarvalho.job_description.domain.user.employee.Employee employee){
         return repository.save(employee);
     }
 
@@ -22,15 +22,15 @@ public class EmployeeService {
 //        return repository.saveAll(employees);
 //    }
 
-    public List<UserRepository.Employee> listEmployees(){
-        return (List<UserRepository.Employee>) repository.findAll();
+    public List<br.com.gustavoalmeidacarvalho.job_description.domain.user.employee.Employee> listEmployees(){
+        return (List<br.com.gustavoalmeidacarvalho.job_description.domain.user.employee.Employee>) repository.findAll();
     }
 
-    public Optional<UserRepository.Employee> getEmployee(String employeeId){
+    public Optional<br.com.gustavoalmeidacarvalho.job_description.domain.user.employee.Employee> getEmployee(String employeeId){
         return repository.findById(employeeId);
     }
 
-    public List<UserRepository.Employee> searchEmployees(String keyword){
+    public List<br.com.gustavoalmeidacarvalho.job_description.domain.user.employee.Employee> searchEmployees(String keyword){
         return repository.searchEmployees(keyword);
     }
 

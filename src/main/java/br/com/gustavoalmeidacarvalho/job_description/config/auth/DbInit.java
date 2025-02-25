@@ -1,7 +1,9 @@
 package br.com.gustavoalmeidacarvalho.job_description.config.auth;
 
+import br.com.gustavoalmeidacarvalho.job_description.domain.user.admin.Admin;
 import br.com.gustavoalmeidacarvalho.job_description.domain.user.User;
 import br.com.gustavoalmeidacarvalho.job_description.domain.user.UserRepository;
+import br.com.gustavoalmeidacarvalho.job_description.domain.user.employee.Employee;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -24,9 +26,10 @@ public class DbInit implements CommandLineRunner{
 	@Override
 	public void run(String... args){
 
-        User user = new User("0000000", passwordEncoder.encode("123"), "USER", true, false);
-        User admin = new User("1111111", passwordEncoder.encode("123"), "ADMIN", true, false);
+        User user = new Employee("0000000", passwordEncoder.encode("123"),  false, true, "e", "s", "4", "1");
+        User admin = new Admin("1111111", passwordEncoder.encode("123"), false, true);
 
+        System.out.println(user.getRole());
         List<User> users = Arrays.asList(user, admin);
         this.userRepository.saveAll(users);
 	}

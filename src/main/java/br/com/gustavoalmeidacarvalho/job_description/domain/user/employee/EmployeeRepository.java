@@ -1,4 +1,4 @@
-package br.com.gustavoalmeidacarvalho.job_description.domain.user;
+package br.com.gustavoalmeidacarvalho.job_description.domain.user.employee;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -8,11 +8,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface EmployeeRepository extends JpaRepository<UserRepository.Employee, String> {
+public interface EmployeeRepository extends JpaRepository<br.com.gustavoalmeidacarvalho.job_description.domain.user.employee.Employee, String> {
 
     @Query(value = "select * from tb_employees e where CONCAT(e.employee_id, e.name, e.ou_dep) " +
             "like %:keyword%", nativeQuery = true)
-    List<UserRepository.Employee> searchEmployees(@Param("keyword") String keyword);
+    List<br.com.gustavoalmeidacarvalho.job_description.domain.user.employee.Employee> searchEmployees(@Param("keyword") String keyword);
 
     @Query(value = "select name from tb_department e where position_holder = :user_id", nativeQuery = true)
     String findOuArea(@Param("user_id") String id);

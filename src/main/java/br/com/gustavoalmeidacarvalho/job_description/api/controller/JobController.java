@@ -3,7 +3,7 @@ package br.com.gustavoalmeidacarvalho.job_description.api.controller;
 import br.com.gustavoalmeidacarvalho.job_description.domain.department.FormService;
 import br.com.gustavoalmeidacarvalho.job_description.domain.report.Report;
 import br.com.gustavoalmeidacarvalho.job_description.domain.report.ReportService;
-import br.com.gustavoalmeidacarvalho.job_description.domain.user.EmployeeRepository;
+import br.com.gustavoalmeidacarvalho.job_description.domain.user.employee.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
