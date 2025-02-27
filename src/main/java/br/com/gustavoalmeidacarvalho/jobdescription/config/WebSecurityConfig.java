@@ -1,6 +1,6 @@
-package br.com.gustavoalmeidacarvalho.jobdescription.config.auth;
+package br.com.gustavoalmeidacarvalho.jobdescription.config;
 
-import br.com.gustavoalmeidacarvalho.jobdescription.domain.user.UserService;
+import br.com.gustavoalmeidacarvalho.jobdescription.security.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

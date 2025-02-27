@@ -1,4 +1,4 @@
-package br.com.gustavoalmeidacarvalho.jobdescription.api.controller;
+package br.com.gustavoalmeidacarvalho.jobdescription.app.department;
 
 import br.com.gustavoalmeidacarvalho.jobdescription.domain.department.FormService;
 import br.com.gustavoalmeidacarvalho.jobdescription.domain.report.Report;

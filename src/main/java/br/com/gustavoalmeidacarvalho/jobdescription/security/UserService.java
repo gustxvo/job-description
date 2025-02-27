@@ -1,6 +1,7 @@
-package br.com.gustavoalmeidacarvalho.jobdescription.domain.user;
+package br.com.gustavoalmeidacarvalho.jobdescription.security;
 
-import br.com.gustavoalmeidacarvalho.jobdescription.config.auth.AppUserDetails;
+import br.com.gustavoalmeidacarvalho.jobdescription.domain.user.User;
+import br.com.gustavoalmeidacarvalho.jobdescription.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

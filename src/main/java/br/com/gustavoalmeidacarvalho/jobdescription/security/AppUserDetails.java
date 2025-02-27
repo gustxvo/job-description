@@ -1,4 +1,4 @@
-package br.com.gustavoalmeidacarvalho.jobdescription.config.auth;
+package br.com.gustavoalmeidacarvalho.jobdescription.security;
 
 import br.com.gustavoalmeidacarvalho.jobdescription.domain.user.User;
 import org.springframework.security.core.GrantedAuthority;

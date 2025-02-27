@@ -1,4 +1,4 @@
-package br.com.gustavoalmeidacarvalho.jobdescription.api.controller;
+package br.com.gustavoalmeidacarvalho.jobdescription.app.employee;
 
 import br.com.gustavoalmeidacarvalho.jobdescription.domain.user.employee.EmployeeService;
 import lombok.AllArgsConstructor;

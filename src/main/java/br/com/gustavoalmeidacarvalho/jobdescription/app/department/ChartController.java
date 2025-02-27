@@ -1,4 +1,4 @@
-package br.com.gustavoalmeidacarvalho.jobdescription.api.controller;
+package br.com.gustavoalmeidacarvalho.jobdescription.app.department;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
