@@ -13,9 +13,6 @@ import lombok.Setter;
 @Table(name = "tb_employees")
 public class Employee extends User {
 
-    @Column(name = "employee_id", length = 8)
-    private String employeeId;
-
     @Column(nullable = false, length = 75)
     private String name;
 
@@ -39,7 +36,6 @@ public class Employee extends User {
     }
 
     public Employee(
-            String userId,
             String password,
             boolean locked,
             boolean enabled,
@@ -48,7 +44,7 @@ public class Employee extends User {
             String ouDep,
             String phoneExt
     ) {
-        super(userId, password, "EMPLOYEE", locked, enabled);
+        super(password, "EMPLOYEE", locked, enabled);
         this.name = name;
         this.office = office;
         this.ouDep = ouDep;
@@ -56,9 +52,8 @@ public class Employee extends User {
     }
 
     public Employee(
-            String userId,
+            Integer userId,
             String password,
-            String role,
             boolean locked,
             boolean enabled,
             String name,

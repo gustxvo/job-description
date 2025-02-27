@@ -23,13 +23,13 @@ public class AppUserDetails implements UserDetails {
     }
 
     @Override
-    public String getPassword() {
-        return user.getPassword();
+    public String getUsername() {
+        return user.getUserId();
     }
 
     @Override
-    public String getUsername() {
-        return user.getUserId();
+    public String getPassword() {
+        return user.getPassword();
     }
 
     @Override

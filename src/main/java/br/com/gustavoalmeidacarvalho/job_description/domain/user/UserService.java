@@ -1,27 +1,22 @@
 package br.com.gustavoalmeidacarvalho.job_description.domain.user;
 
 import br.com.gustavoalmeidacarvalho.job_description.config.auth.AppUserDetails;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserService implements UserDetailsService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-        User user = userRepository.findByUserId(userId);
-
-        if (user == null){
-            throw new UsernameNotFoundException("Número da chapa ou senha inválidos");
-        }
+        User user = userRepository.findById(Integer.parseInt(userId))
+                .orElseThrow(() -> new UsernameNotFoundException("Usuário ou senha incorretos"));
 
         return new AppUserDetails(user);
     }

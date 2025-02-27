@@ -16,7 +16,12 @@ public class Admin extends User {
         super("ADMIN");
     }
 
-    public Admin(String userId, String password, boolean locked, boolean enabled) {
+    public Admin(String password, boolean locked, boolean enabled) {
+        super(password, "ADMIN", locked, enabled);
+    }
+
+    public Admin(Integer userId, String password, boolean locked, boolean enabled) {
         super(userId, password, "ADMIN", locked, enabled);
     }
+
 }
