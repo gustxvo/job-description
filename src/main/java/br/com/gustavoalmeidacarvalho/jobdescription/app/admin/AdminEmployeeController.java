@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("/admin/employees")
+@RequestMapping("/admin/colaboradores")
 public class AdminEmployeeController {
 
     @GetMapping
     public String listEmployees() {
-        return "admin/list-employees";
+        return "admin/home";
     }
 
     @GetMapping("/{employeeId}")
@@ -22,14 +22,14 @@ public class AdminEmployeeController {
         return "admin/employee-info";
     }
 
-    @GetMapping("/registration")
+    @GetMapping("/registro")
     public String createEmployeeForm() {
         return "admin/register-employee";
     }
 
-    @PostMapping("/register")
+    @PostMapping("/registrar")
     public String createEmployee() {
-        return "redirect:/admin/employees";
+        return "redirect:/admin/home";
     }
 
 }

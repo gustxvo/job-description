@@ -2,15 +2,17 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Employees</title>
+    <title>Controle dos Formulários</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="description" content="Employees in the company"/>
+    <meta name="description" content="Acompanhamento dos relatórios em andamento"/>
     <meta name="viewport" content="width=device-width"/>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/dist/css/bootstrap.min.css}"/>
     <script th:src="@{/webjars/bootstrap/dist/js/bootstrap.min.js}"></script>
 </head>
 <body>
-    <div th:replace="~{fragments/admin-navbar}"></div>
-
+<div th:replace="~{fragments/admin-navbar :: navbar (activePage='controle')}"></div>
+<main class="my-5">
+    <h1>Controle dos formulários</h1>
+</main>
 </body>
 </html>

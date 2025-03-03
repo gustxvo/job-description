@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<nav th:fragment="navbar" class="navbar navbar-dark bg-dark fixed-top">
-    <div class="container-fluid my-2">
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+<nav th:fragment="navbar" class="navbar bg-dark fixed-top">
+    <div class="container-fluid text-body-white">
+        <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div>
-            <a class="navbar-brand" th:href="@{#}">Job Description</a>
-        </div>
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <a class="navbar-brand text-light" th:href="@{/admin/colaboradores}">
+            <h3>Job Description</h3>
+        </a>
+        <a class="navbar-brand mt-2 mt-lg-0" th:href="@{/logout}">
+            <img src="/static/images/logo.png" th:src="@{/images/logo.png}" alt="ACME Logo" width="56" height="35" />
+        </a>
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+             aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasNavbarLabel">MENU</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item btn btn-s btn-dark">
-                        <a class="nav-link" th:href="@{/admin/employees}">LISTOGRAMA</a>
-                    </li>
-                    <li class="nav-item btn btn-s btn-dark">
-                        <a class="nav-link" th:href="@{/admin/employees}">ARQUIVAMENTO</a>
-                    </li>
-                    <li class="nav-item btn btn-s btn-dark">
-                        <a class="nav-link" th:href="@{/admin/employees}">CONTROLE DOS FORMULÁRIOS</a>
-                    </li>
-                    <li class="nav-item btn btn-s btn-dark">
-                        <a class="nav-link" th:href="@{/admin/employees}">ORGANOGRAMA</a>
-                    </li>
-                </ul>
+            <div class="offcanvas-body d-flex flex-column flex-grow-1 gap-2">
+                <a class="btn" th:href="@{/admin/colaboradores}"
+                   th:classappend="${activePage == 'home' ? 'btn-dark' : 'btn-outline-dark'}">
+                    HOME
+                </a>
+                <a class="btn" th:href="@{/admin/arquivamento}"
+                   th:classappend="${activePage == 'arquivamento' ? 'btn-dark' : 'btn-outline-dark'}">
+                    ARQUIVAMENTO
+                </a>
+                <a class="btn" th:href="@{/admin/controle-form}"
+                   th:classappend="${activePage == 'controle' ? 'btn-dark' : 'btn-outline-dark'}">
+                    CONTROLE DOS FORMULÁRIOS
+                </a>
+                <a class="btn" th:href="@{/admin/organograma}"
+                   th:classappend="${activePage == 'organograma' ? 'btn-dark' : 'btn-outline-dark'}">
+                    ORGANOGRAMA
+                </a>
             </div>
         </div>
     </div>
