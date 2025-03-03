@@ -1,18 +1,58 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
     <title>Employees</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="description" content="Funcionários da empresa"/>
-    <meta name="viewport" content="width=device-width"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/dist/css/bootstrap.min.css}"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Funcionários da empresa" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/dist/css/bootstrap.min.css}" />
     <script th:src="@{/webjars/bootstrap/dist/js/bootstrap.min.js}"></script>
 </head>
+
 <body>
 <div th:replace="~{fragments/admin-navbar :: navbar (activePage='home')}"></div>
-<main class="my-5">
-    <h1>Home</h1>
+<main class="container d-flex flex-column my-5 py-5 gap-3">
+    <h1 class="p-5 mb-2 bg-body-secondary rounded-3">Colaboradores</h1>
+
+    <div class="d-flex justify-content-between">
+        <a class="btn btn-primary" href="register-employee.html"
+           th:href="@{/admin/colaboradores/registrar}">Cadastrar</a>
+
+        <form class="d-flex" role="search" th:action="@{/admin/colaboradores}">
+            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+    </div>
+
+    <input class="form-control" id="employees-sheet" type="file" accept=".csv, .xlsx, .xls">
+
+    <table class="table table-hover text-center">
+        <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Departamento</th>
+            <th>Cargo</th>
+            <th>Salário</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee : ${employees}">
+            <td th:text="${employee.userId}"></td>
+            <td th:text="${employee.name}"></td>
+            <td th:text="${employee.email}"></td>
+            <td th:text="${employee.department}"></td>
+            <td th:text="${employee.position}"></td>
+            <td th:text="${#numbers.formatCurrency(employee.salary)}"></td>
+            <td th:text="${employee.status}"></td>
+        </tr>
+        </tbody>
+    </table>
 </main>
 </body>
+
 </html>
