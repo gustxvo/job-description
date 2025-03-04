@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Register Employee</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Employees in the company" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/dist/css/bootstrap.min.css}" />
+    <script th:src="@{/webjars/bootstrap/dist/js/bootstrap.min.js}"></script>
+</head>
+
+<body>
+<div th:replace="~{fragments/admin-navbar}"></div>
+<main class="container my-5 py-5 gap-3" th:object="${employee}">
+    <h2 th:if="*{userId} == null" class="mb-4 text-center">Registrar Funcionário</h2>
+
+    <form class="d-flex flex-column gap-4" action="#" th:action="@{/admin/colaboradores/registrar}" method="post">
+        <section class="p-3 border rounded">
+            <h4>Informações Pessoais</h4>
+            <div class="row g-3">
+                <div class="col-md-8">
+                    <label for="name" class="form-label">Nome</label>
+                    <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Digite o nome"
+                           required>
+                </div>
+                <div class="col-md-4">
+                    <label for="phone" class="form-label">Telefone</label>
+                    <input type="tel" class="form-control" id="phone" th:field="*{phone}"
+                           placeholder="Digite o telefone" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="rg" class="form-label">RG</label>
+                    <input type="text" class="form-control" id="rg" th:field="*{rg}" placeholder="Digite o RG"
+                           required>
+                </div>
+                <div class="col-md-6">
+                    <label for="cpf" class="form-label">CPF</label>
+                    <input type="text" class="form-control" id="cpf" th:field="*{cpf}" placeholder="Digite o CPF"
+                           required>
+                </div>
+            </div>
+        </section>
+
+        <section class="p-3 border rounded">
+            <h4>Endereço</h4>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label for="zip-code" class="form-label">CEP</label>
+                    <input type="text" class="form-control" id="zip-code" th:field="*{address.zipCode}"
+                           placeholder="Digite o CEP" required>
+                </div>
+                <div class="col-md-5">
+                    <label for="city" class="form-label">Cidade</label>
+                    <input type="text" class="form-control" id="city" th:field="*{address.city}"
+                           placeholder="Digite a cidade" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="state" class="form-label">Estado</label>
+                    <input type="text" class="form-control" id="state" th:field="*{address.state}"
+                           placeholder="Digite o estado" required>
+                </div>
+                <div class="col-md-7">
+                    <label for="street" class="form-label">Logradouro</label>
+                    <input type="text" class="form-control" id="street" th:field="*{address.street}"
+                           placeholder="Digite o logradouro" required>
+                </div>
+                <div class="col-md-2">
+                    <label for="number" class="form-label">Número</label>
+                    <input type="text" class="form-control" id="number" th:field="*{address.number}"
+                           placeholder="Digite o número" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="complement" class="form-label">Complemento (opcional)</label>
+                    <input type="text" class="form-control" id="complement" th:field="*{address.complement}"
+                           placeholder="Apto, bloco">
+                </div>
+            </div>
+        </section>
+
+        <section class="p-3 border rounded">
+            <h4>Informações Profissionais</h4>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label for="position" class="form-label">Cargo</label>
+                    <input type="text" class="form-control" id="position" th:field="*{position}"
+                           placeholder="Digite o cargo" required>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="department" class="form-label">Departamento</label>
+                    <input type="text" class="form-control" id="department" th:field="*{department}"
+                           placeholder="Digite o departamento" required>
+                </div>
+
+
+                <div class="col-md-4">
+                    <label for="salary" class="form-label">Salário</label>
+                    <div class="input-group">
+                        <span class="input-group-text">R$</span>
+                        <input type="number" class="form-control" id="salary" th:field="*{salary}"
+                               placeholder="Digite o salário" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="email" class="form-label">E-mail</label>
+                    <input type="email" class="form-control" id="email" th:field="*{email}"
+                           placeholder="Digite o e-mail" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="phone-ext" class="form-label">Ramal</label>
+                    <input type="text" class="form-control" id="phone-ext" th:field="*{phoneExt}"
+                           placeholder="Digite o ramal" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="status" class="form-label">Situação</label>
+                    <input type="text" class="form-control" id="status" th:field="*{status.message}"
+                           placeholder="Digite a situação" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="admission-date" class="form-label">Data de Admissão</label>
+                    <input type="date" class="form-control" id="admission-date" th:field="*{admissionDate}"
+                           required>
+                </div>
+                <div th:if="*{terminationDate} != null" class="col-md-4">
+                    <label for="termination-date" class="form-label">Data do Desligamento</label>
+                    <input type="date" class="form-control" id="termination-date" th:field="*{terminationDate}"
+                           required>
+                </div>
+            </div>
+        </section>
+        <input type="hidden" th:field="*{userId}" value="2" />
+        <div class="align-self-end">
+            <a href="home.html" th:href="@{/admin/colaboradores}" class="btn btn-outline-danger">Cancelar</a>
+            <button type="submit" class="btn btn-primary"
+                    th:text="*{userId == null} ? Cadastrar : Atualizar">Cadastrar</button>
+        </div>
+    </form>
+</main>
+</body>
+
+</html>

@@ -12,47 +12,54 @@
 </head>
 
 <body>
-<div th:replace="~{fragments/admin-navbar :: navbar (activePage='home')}"></div>
-<main class="container d-flex flex-column my-5 py-5 gap-3">
-    <h1 class="p-5 mb-2 bg-body-secondary rounded-3">Colaboradores</h1>
+    <div th:replace="~{fragments/admin-navbar :: navbar (activePage='home')}"></div>
+    <main class="container d-flex flex-column my-5 py-5 gap-3">
+        <h1 class="p-5 mb-2 bg-body-secondary rounded-3">Colaboradores</h1>
 
-    <div class="d-flex justify-content-between">
-        <a class="btn btn-primary" href="register-employee.html"
-           th:href="@{/admin/colaboradores/registrar}">Cadastrar</a>
+        <div class="d-flex justify-content-between">
+            <a class="btn btn-primary" href="employee-form.html"
+                th:href="@{/admin/colaboradores/registrar}">Cadastrar</a>
 
-        <form class="d-flex" role="search" th:action="@{/admin/colaboradores}">
-            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
-        </form>
-    </div>
+            <form class="d-flex" role="search" th:action="@{/admin/colaboradores}">
+                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+        </div>
 
-    <input class="form-control" id="employees-sheet" type="file" accept=".csv, .xlsx, .xls">
+        <input class="form-control" id="employees-sheet" type="file" accept=".csv, .xlsx, .xls">
 
-    <table class="table table-hover text-center">
-        <thead class="table-dark">
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Departamento</th>
-            <th>Cargo</th>
-            <th>Salário</th>
-            <th>Status</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="employee : ${employees}">
-            <td th:text="${employee.userId}"></td>
-            <td th:text="${employee.name}"></td>
-            <td th:text="${employee.email}"></td>
-            <td th:text="${employee.department}"></td>
-            <td th:text="${employee.position}"></td>
-            <td th:text="${#numbers.formatCurrency(employee.salary)}"></td>
-            <td th:text="${employee.status}"></td>
-        </tr>
-        </tbody>
-    </table>
-</main>
+        <table class="table table-hover text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Departamento</th>
+                    <th>Cargo</th>
+                    <th>Salário</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="employee : ${employees}" style="cursor: pointer" th:employee-id="${employee.id}"
+                    onclick="rowClicked(this.getAttribute('employee-id'))">
+                    <td th:text="${employee.id}"></td>
+                    <td th:text="${employee.name}"></td>
+                    <td th:text="${employee.email}"></td>
+                    <td th:text="${employee.department}"></td>
+                    <td th:text="${employee.position}"></td>
+                    <td th:text="${#numbers.formatCurrency(employee.salary)}"></td>
+                    <td th:text="${employee.status.message}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    <script>
+        function rowClicked(value) {
+            location.href = "/admin/colaboradores/" + value;
+        }
+    </script>
+
 </body>
 
 </html>
