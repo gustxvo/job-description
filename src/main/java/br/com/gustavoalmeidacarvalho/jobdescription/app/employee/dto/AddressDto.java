@@ -1,5 +1,6 @@
 package br.com.gustavoalmeidacarvalho.jobdescription.app.employee.dto;
 
+import br.com.gustavoalmeidacarvalho.jobdescription.domain.user.employee.Address;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,22 @@ public class AddressDto {
     private String number;
     private String complement;
     private String city;
-    private String state;
+    private String district;
     private String zipCode;
+
+    public static AddressDto fromEntity(Address address) {
+        return new AddressDto(
+                address.getStreet(),
+                address.getNumber(),
+                address.getComplement(),
+                address.getCity(),
+                address.getDistrict(),
+                address.getZipCode()
+        );
+    }
+
+    public Address toEntity() {
+        return new Address(street, number, complement, city, district, zipCode);
+    }
 
 }

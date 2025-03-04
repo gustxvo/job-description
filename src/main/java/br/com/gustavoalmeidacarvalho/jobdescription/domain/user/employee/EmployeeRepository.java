@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface EmployeeRepository extends JpaRepository<br.com.gustavoalmeidacarvalho.jobdescription.domain.user.employee.Employee, String> {
+public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
     @Query(value = "select * from tb_employees e where CONCAT(e.employee_id, e.name, e.ou_dep) " +
             "like %:keyword%", nativeQuery = true)

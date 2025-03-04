@@ -14,7 +14,7 @@
 <body>
 <div th:replace="~{fragments/admin-navbar}"></div>
 <main class="container my-5 py-5 gap-3" th:object="${employee}">
-    <h2 th:if="*{userId} == null" class="mb-4 text-center">Registrar Funcionário</h2>
+    <h2 th:if="*{id} == null" class="mb-4 text-center">Registrar Funcionário</h2>
 
     <form class="d-flex flex-column gap-4" action="#" th:action="@{/admin/colaboradores/registrar}" method="post">
         <section class="p-3 border rounded">
@@ -58,8 +58,8 @@
                            placeholder="Digite a cidade" required>
                 </div>
                 <div class="col-md-3">
-                    <label for="state" class="form-label">Estado</label>
-                    <input type="text" class="form-control" id="state" th:field="*{address.state}"
+                    <label for="district" class="form-label">Estado</label>
+                    <input type="text" class="form-control" id="district" th:field="*{address.district}"
                            placeholder="Digite o estado" required>
                 </div>
                 <div class="col-md-7">
@@ -131,11 +131,11 @@
                 </div>
             </div>
         </section>
-        <input type="hidden" th:field="*{userId}" value="2" />
+        <input type="hidden" th:field="*{id}" value="2" />
         <div class="align-self-end">
             <a href="home.html" th:href="@{/admin/colaboradores}" class="btn btn-outline-danger">Cancelar</a>
             <button type="submit" class="btn btn-primary"
-                    th:text="*{userId == null} ? Cadastrar : Atualizar">Cadastrar</button>
+                    th:text="*{id == null} ? Cadastrar : Atualizar">Cadastrar</button>
         </div>
     </form>
 </main>

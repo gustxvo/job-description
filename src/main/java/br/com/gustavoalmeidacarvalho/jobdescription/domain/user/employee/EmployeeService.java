@@ -1,47 +1,51 @@
 package br.com.gustavoalmeidacarvalho.jobdescription.domain.user.employee;
 
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import br.com.gustavoalmeidacarvalho.jobdescription.app.employee.dto.EmployeeDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class EmployeeService {
 
-    @Autowired
-    private br.com.gustavoalmeidacarvalho.jobdescription.domain.user.employee.EmployeeRepository repository;
+    private final EmployeeRepository employeeRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public br.com.gustavoalmeidacarvalho.jobdescription.domain.user.employee.Employee saveEmployee(br.com.gustavoalmeidacarvalho.jobdescription.domain.user.employee.Employee employee){
-        return repository.save(employee);
+    public List<Employee> findAll() {
+        return employeeRepository.findAll();
+    }
+
+    public Employee save(Employee employee) {
+        if (employee.getPassword() == null) {
+            employee.setPassword(passwordEncoder.encode(employee.getUserId()));
+        }
+        return employeeRepository.save(employee);
     }
 
 //    public List<Employee> saveEmployeeList(List<Employee> employees){
 //        return repository.saveAll(employees);
 //    }
 
-    public List<br.com.gustavoalmeidacarvalho.jobdescription.domain.user.employee.Employee> listEmployees(){
-        return (List<br.com.gustavoalmeidacarvalho.jobdescription.domain.user.employee.Employee>) repository.findAll();
+    public List<Employee> listEmployees() {
+        return (List<Employee>) employeeRepository.findAll();
     }
 
-    public Optional<br.com.gustavoalmeidacarvalho.jobdescription.domain.user.employee.Employee> getEmployee(String employeeId){
-        return repository.findById(employeeId);
+    public Optional<Employee> getEmployee(Integer employeeId) {
+        return employeeRepository.findById(employeeId);
     }
 
-    public List<br.com.gustavoalmeidacarvalho.jobdescription.domain.user.employee.Employee> searchEmployees(String keyword){
-        return repository.searchEmployees(keyword);
+    public List<Employee> searchEmployees(String keyword) {
+        return employeeRepository.searchEmployees(keyword);
     }
 
-
-//    public Employee editEmployee(String employeeId){
-//        Optional<Employee> employee = repository.findById(employeeId);
-//        return repository.save(employeeId);
-//    }
-//
-//    public Optional<Employee> deleteEmployee(String id){
-//        return repository.deleteById(id);
-//    }
+    public Employee findById(int userId) {
+        return employeeRepository.findById(userId)
+                .orElseThrow(() -> new UsernameNotFoundException("Employee not found with id " + userId));
+    }
 
 }

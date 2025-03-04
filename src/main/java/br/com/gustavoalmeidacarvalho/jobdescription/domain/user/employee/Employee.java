@@ -2,10 +2,14 @@ package br.com.gustavoalmeidacarvalho.jobdescription.domain.user.employee;
 
 import br.com.gustavoalmeidacarvalho.jobdescription.domain.user.User;
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -17,58 +21,98 @@ public class Employee extends User {
     private String name;
 
     @Column(nullable = false, length = 50)
-    private String office;
+    private String rg;
 
-    @Column(name = "ou_dep", length = 8)
-    private String ouDep;
+    @Column(nullable = false, length = 11)
+    private String cpf;
+
+    private String phone;
+
+    @Embedded
+    private Address address;
+
+    private String position;
+    private String department;
+    private String email;
 
     @Column(name = "phone_ext", length = 8)
     private String phoneExt;
 
-    @Column(length = 8)
-    private String cpi;
-
-    @Column(length = 8)
-    private String cost;
+    private BigDecimal salary;
+    private EmployeeStatus status;
+    private LocalDate admissionDate;
+    private LocalDate terminationDate;
 
     public Employee() {
         super("EMPLOYEE");
     }
 
     public Employee(
+            int userId,
             String password,
             boolean locked,
             boolean enabled,
             String name,
-            String office,
-            String ouDep,
-            String phoneExt
-    ) {
-        super(password, "EMPLOYEE", locked, enabled);
-        this.name = name;
-        this.office = office;
-        this.ouDep = ouDep;
-        this.phoneExt = phoneExt;
-    }
-
-    public Employee(
-            Integer userId,
-            String password,
-            boolean locked,
-            boolean enabled,
-            String name,
-            String office,
-            String ouDep,
+            String rg,
+            String cpf,
+            String phone,
+            Address address,
+            String position,
+            String department,
+            String email,
             String phoneExt,
-            String cpi,
-            String cost
+            BigDecimal salary,
+            EmployeeStatus status,
+            LocalDate admissionDate,
+            LocalDate terminationDate
     ) {
         super(userId, password, "EMPLOYEE", locked, enabled);
         this.name = name;
-        this.office = office;
-        this.ouDep = ouDep;
+        this.rg = rg;
+        this.cpf = cpf;
+        this.phone = phone;
+        this.address = address;
+        this.position = position;
+        this.department = department;
+        this.email = email;
         this.phoneExt = phoneExt;
-        this.cpi = cpi;
-        this.cost = cost;
+        this.salary = salary;
+        this.status = status;
+        this.admissionDate = admissionDate;
+        this.terminationDate = terminationDate;
     }
+    public Employee(
+            String password,
+            boolean locked,
+            boolean enabled,
+            String name,
+            String rg,
+            String cpf,
+            String phone,
+            Address address,
+            String position,
+            String department,
+            String email,
+            String phoneExt,
+            BigDecimal salary,
+            EmployeeStatus status,
+            LocalDate admissionDate,
+            LocalDate terminationDate
+    ) {
+        super(password, "EMPLOYEE", locked, enabled);
+        this.name = name;
+        this.rg = rg;
+        this.cpf = cpf;
+        this.phone = phone;
+        this.address = address;
+        this.position = position;
+        this.department = department;
+        this.email = email;
+        this.phoneExt = phoneExt;
+        this.salary = salary;
+        this.status = status;
+        this.admissionDate = admissionDate;
+        this.terminationDate = terminationDate;
+    }
+
 }

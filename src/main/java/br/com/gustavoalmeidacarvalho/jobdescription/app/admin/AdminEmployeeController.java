@@ -1,5 +1,9 @@
 package br.com.gustavoalmeidacarvalho.jobdescription.app.admin;
 
+import br.com.gustavoalmeidacarvalho.jobdescription.app.employee.dto.EmployeeDto;
+import br.com.gustavoalmeidacarvalho.jobdescription.app.mapper.EmployeeMapper;
+import br.com.gustavoalmeidacarvalho.jobdescription.domain.user.employee.Employee;
+import br.com.gustavoalmeidacarvalho.jobdescription.domain.user.employee.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,13 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import br.com.gustavoalmeidacarvalho.jobdescription.app.employee.dto.AddressDto;
-import br.com.gustavoalmeidacarvalho.jobdescription.app.employee.dto.EmployeeDto;
-import br.com.gustavoalmeidacarvalho.jobdescription.domain.user.employee.EmployeeStatus;
-
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -23,33 +20,20 @@ import java.util.List;
 @RequestMapping("/admin/colaboradores")
 public class AdminEmployeeController {
 
-    List<EmployeeDto> employees = new ArrayList<>();
-
-    public AdminEmployeeController() {
-        var fakeAddress = new AddressDto("Street", "number", "complement", "city", "state", "zip");
-        employees
-                .add(new EmployeeDto("000001", "Alfredo", "1231231", "143", "123", fakeAddress, "Senior", "TI", "email",
-                        "phoneExt", BigDecimal.valueOf(5000),
-                        EmployeeStatus.ACTIVE,
-                        LocalDate.now(),
-                        null));
-        employees.add(new EmployeeDto("000002", "João", "1231231", "143", "123", fakeAddress, "Senior", "TI", "email",
-                "phoneExt", BigDecimal.valueOf(5000),
-                EmployeeStatus.TERMINATED,
-                LocalDate.now().minusMonths(6),
-                LocalDate.now()));
-
-    }
+    private final EmployeeService employeeService;
+    private final EmployeeMapper employeeMapper;
 
     @GetMapping
     public String listEmployees(Model model) {
+        List<EmployeeDto> employees = employeeMapper.fromEntityList(employeeService.findAll());
         model.addAttribute("employees", employees);
         return "admin/home";
     }
 
     @GetMapping("/{employeeId}")
     public String getEmployeeById(@PathVariable String employeeId, Model model) {
-        var employee = employees.stream().filter(e -> employeeId.equals(e.getId())).findFirst().orElseThrow();
+        int userId = employeeMapper.getUserId(employeeId);
+        EmployeeDto employee = employeeMapper.fromEntity(employeeService.findById(userId));
         model.addAttribute("employee", employee);
         return "admin/employee-form";
     }
@@ -63,7 +47,8 @@ public class AdminEmployeeController {
     @PostMapping("/registrar")
     public String createEmployee(@ModelAttribute EmployeeDto employee, Model model) {
         model.addAttribute("employee", employee);
-        employees.add(employee);
+        Employee employeeEntity = employeeMapper.createEmployeeEntity(employee);
+        employeeService.save(employeeEntity);
         return "redirect:/admin/colaboradores";
     }
 

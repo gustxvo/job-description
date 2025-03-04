@@ -17,9 +17,9 @@ public class EmployeeDto {
 
     private String id;
     private String name;
-    private String phone;
     private String rg;
     private String cpf;
+    private String phone;
     private AddressDto address;
     private String position;
     private String department;
