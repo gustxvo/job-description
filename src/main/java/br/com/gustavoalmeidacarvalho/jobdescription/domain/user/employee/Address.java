@@ -29,7 +29,7 @@ public class Address {
     @Column(name = "address_district", nullable = false, length = 25)
     private String district;
 
-    @Column(name = "address_zipCode", nullable = false, length = 8)
+    @Column(name = "address_zip_code", nullable = false, length = 8)
     private String zipCode;
 
 }
