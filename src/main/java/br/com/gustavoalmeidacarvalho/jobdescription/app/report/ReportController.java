@@ -13,9 +13,4 @@ public class ReportController {
         return "admin/controle-form";
     }
 
-    @GetMapping("/arquivamento")
-    public String reportsDone() {
-        return "admin/arquivamento";
-    }
-
 }

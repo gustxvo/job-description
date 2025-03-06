@@ -1,6 +1,5 @@
 package br.com.gustavoalmeidacarvalho.jobdescription.app.department;
 
-import br.com.gustavoalmeidacarvalho.jobdescription.domain.department.FormService;
 import br.com.gustavoalmeidacarvalho.jobdescription.domain.report.Report;
 import br.com.gustavoalmeidacarvalho.jobdescription.domain.report.ReportService;
 import br.com.gustavoalmeidacarvalho.jobdescription.domain.user.employee.EmployeeRepository;
@@ -24,9 +23,6 @@ public class JobController {
 	@Autowired
 	private ReportService reportService;
 
-	@Autowired
-	private FormService formService;
-
 	@GetMapping("/login")
 	public String login() {
 		return "login";
@@ -44,12 +40,12 @@ public class JobController {
 
 	@GetMapping("/report")
 	public String akv(Model model, @Param("user_id") Principal principal) {
-//		String employee_id = principal.getName();
-//		String ou = repository.findDepartmentByEmployee(employee_id);
-//		String area = repository.findOuArea(employee_id);
-//		String acronym = repository.findOuAcronym(employee_id);
-//		String nameEn = repository.findOuNameEn(employee_id);
-//		String namePtBr = repository.findOuNamePtBr(employee_id);
+		// String employee_id = principal.getName();
+		// String ou = repository.findDepartmentByEmployee(employee_id);
+		// String area = repository.findOuArea(employee_id);
+		// String acronym = repository.findOuAcronym(employee_id);
+		// String nameEn = repository.findOuNameEn(employee_id);
+		// String namePtBr = repository.findOuNamePtBr(employee_id);
 		model.addAttribute("area", "area");
 		model.addAttribute("acronym", "acronym");
 		model.addAttribute("name_en", "nameEn");
@@ -61,22 +57,22 @@ public class JobController {
 	@PostMapping("/salvar")
 	public String Salvar(Report report) {
 		reportService.saveForm(report);
-		return 	"redirect:/report";
+		return "redirect:/report";
 	}
 
 	@GetMapping("/arquivamento")
-	public String listDepartments(Model model, @Param("keyword") String keyword){
+	public String listDepartments(Model model, @Param("keyword") String keyword) {
 
-		if (keyword != null){
-			model.addAttribute("departments", formService.searchDepartment(keyword));
-		} else {
-			model.addAttribute("departments", formService.listDepartment());
-		}
+		// if (keyword != null) {
+		// model.addAttribute("departments", formService.searchDepartment(keyword));
+		// } else {
+		// model.addAttribute("departments", formService.listDepartment());
+		// }
 		return "arquivamento";
 	}
 
 	@PostMapping("/voltar")
-	public String voltar(){
+	public String voltar() {
 		return "redirect:/controleforms";
 	}
 }

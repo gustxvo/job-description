@@ -1,31 +1,36 @@
 package br.com.gustavoalmeidacarvalho.jobdescription.domain.department;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-
+import lombok.Setter;
+import br.com.gustavoalmeidacarvalho.jobdescription.domain.user.employee.Employee;
 import jakarta.persistence.*;
 
-@SuppressWarnings("LombokDataInspection")
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
-@Table(name = "tb_sub_department")
+@AllArgsConstructor
+@Table(name = "tb_departments")
 public class Department {
 
     @Id
-    @Column(nullable = false, length = 8)
-    private String ou;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "department_id", nullable = false, length = 8)
+    private Integer id;
 
-    @Column(name = "name_en", nullable = false, length = 200)
+    @Column(name = "name_en", nullable = false, length = 50)
     private String nameEn;
 
-    @Column(name = "name_pt_br", nullable = false, length = 200)
+    @Column(name = "name_pt_br", nullable = false, length = 50)
     private String namePtBr;
 
-    @Column(nullable = false, length = 45)
+    @Column(nullable = false, length = 5)
     private String acronym;
 
-    @Column(name = "position_holder", length = 8)
-    private String holder;
+    @OneToOne
+    @JoinColumn(name = "position_holder_id", nullable = false)
+    private Employee holder;
 
 }

@@ -1,6 +1,13 @@
 INSERT IGNORE INTO tb_admins (user_id, password, role, locked, enabled) 
 VALUES (0, '$2a$12$fNdROYExOI36XBXKYcRV8.pdk/7.RN2zB6WtqC31V9iIUP8rDgrNG', 'ADMIN', false, true);
 
+INSERT IGNORE INTO tb_departments (name_en, name_pt_br, acronym) 
+VALUES 
+('Human Resources', 'Recursos Humanos', 'RH'),
+('Finances', 'Financeiro', 'FIN'),
+('Marketing', 'Marketing', 'MKT'),
+('Information Technology', 'Tecnologia da Informação', 'TI');
+
 INSERT IGNORE INTO tb_employees (user_id, password, role, locked, enabled, name, rg, cpf, phone, position, department, email, phone_ext, salary, status, admission_date, termination_date, 
                           address_street, address_number, address_complement, address_city, address_district, address_zip_code)
 VALUES 
@@ -20,3 +27,8 @@ VALUES
  'Rua das Flores', '123', 'Apto 45', 'São Paulo', 'Centro', '01010000');
 
 INSERT INTO user_sequence (name, next_val) VALUES ('user_sequence', 6);
+
+UPDATE tb_departments SET position_holder_id = 3 WHERE department_id = 1; 
+UPDATE tb_departments SET position_holder_id = 1 WHERE department_id = 2; 
+UPDATE tb_departments SET position_holder_id = 4 WHERE department_id = 3; 
+UPDATE tb_departments SET position_holder_id = 5 WHERE department_id = 4; 

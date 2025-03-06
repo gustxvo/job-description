@@ -1,18 +1,53 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
     <title>Arquivamento</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="description" content="Arquivamento dos relatórios finalizados"/>
-    <meta name="viewport" content="width=device-width"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/dist/css/bootstrap.min.css}"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Arquivamento dos relatórios finalizados" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/dist/css/bootstrap.min.css}" />
     <script th:src="@{/webjars/bootstrap/dist/js/bootstrap.min.js}"></script>
 </head>
+
 <body>
-<div th:replace="~{fragments/admin-navbar :: navbar (activePage='arquivamento')}"></div>
-<main class="my-5">
-    <h1>Arquivamento</h1>
-</main>
+    <div th:replace="~{fragments/admin-navbar :: navbar (activePage='arquivamento')}"></div>
+    <main class="container d-flex flex-column my-5 py-5 gap-3">
+        <h1 class="p-5 mb-2 bg-body-secondary rounded-3">Arquivamento</h1>
+
+        <form class="align-self-end d-flex" role="search" action="#" th:action="@{/admin/arquivamento}">
+            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+
+        <table class="table table-hover text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Abreviação</th>
+                    <th>Descrição UO Inglês</th>
+                    <th>Descrição UO Português</th>
+                    <th>Titular da Posição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="department : ${departments}">
+                    <td th:text="${department.id}"></td>
+                    <td th:text="${department.acronym}"></td>
+                    <td th:text="${department.nameEn}"></td>
+                    <td th:text="${department.namePtBr}"></td>
+                    <td th:text="${department.positionHolder.name}" th:holder-id="${department.positionHolder.holderId}"
+                        onclick="rowClicked(this.getAttribute('holder-id'))" style="cursor: pointer;"></td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
 </body>
+<script>
+    function rowClicked(value) {
+        location.href = "/admin/colaboradores/" + value;
+    }
+</script>
+
 </html>
