@@ -41,3 +41,32 @@ CREATE TABLE tb_departments (
     acronym VARCHAR(5) NOT NULL,
     position_holder_id INT REFERENCES tb_employees(user_id)
 );
+
+CREATE TABLE tb_reports (
+    report_id INT AUTO_INCREMENT PRIMARY KEY,
+    report_owner_id INT NOT NULL REFERENCES tb_employees (user_id),
+    affiliation INT,
+    area VARCHAR(200),
+    budget_euro NUMERIC(10, 2),
+    budget_real NUMERIC(10, 2),
+    created_at DATE,
+    signed_at DATE
+);
+
+CREATE TABLE tb_kpis (
+    kpi_id INT AUTO_INCREMENT PRIMARY KEY,
+    description VARCHAR(255),
+    kpi_value NUMERIC(10, 2)
+);
+
+CREATE TABLE tb_tasks (
+    task_id INT AUTO_INCREMENT PRIMARY KEY,
+    description VARCHAR(255) NOT NULL,
+    report_id INT REFERENCES tb_reports (report_id)
+);
+
+CREATE TABLE report_kpis (
+    report_id INT REFERENCES tb_reports (report_id),
+    kpi_id INT REFERENCES tb_kpis (kpi_id),
+    PRIMARY KEY (report_id, kpi_id)
+);
