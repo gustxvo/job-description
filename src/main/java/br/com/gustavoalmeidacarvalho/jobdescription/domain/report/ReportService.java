@@ -1,21 +1,28 @@
 package br.com.gustavoalmeidacarvalho.jobdescription.domain.report;
 
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ReportService {
 
-    @Autowired
-    private ReportRepository repository;
+    private final ReportRepository reportRepository;
 
-    public void saveForm(Report report){
-        repository.save(report);
+    public List<Report> findAll() {
+        return reportRepository.findAll();
     }
 
-    public void viewReport(Long id){
-        repository.findById(id);
+    public Report findById(Long reportId) {
+        return reportRepository.findById(reportId)
+                .orElseThrow(() -> new IllegalArgumentException("Report not found with id " + reportId));
     }
+
+    public void save(Report report) {
+        reportRepository.save(report);
+    }
+
 }

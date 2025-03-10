@@ -1,18 +1,49 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
     <title>Controle dos Formulários</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="description" content="Acompanhamento dos relatórios em andamento"/>
-    <meta name="viewport" content="width=device-width"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/dist/css/bootstrap.min.css}"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Acompanhamento dos relatórios em andamento" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/dist/css/bootstrap.min.css}" />
     <script th:src="@{/webjars/bootstrap/dist/js/bootstrap.min.js}"></script>
 </head>
+
 <body>
-<div th:replace="~{fragments/admin-navbar :: navbar (activePage='controle')}"></div>
-<main class="my-5">
-    <h1>Controle dos formulários</h1>
-</main>
+    <div th:replace="~{fragments/admin-navbar :: navbar (activePage='controle')}"></div>
+    <main class="container my-5 py-5 gap-3">
+        <h2 class="mb-4">Controle dos Formulários</h2>
+        <table class="table table-hover table-striped text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nº Relatório</th>
+                    <th>Requerente</th>
+                    <th>Departamento</th>
+                    <th>Área</th>
+                    <th>Enviado/Assinado</th>
+                    <th>Data de Criação</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="report : ${reports}">
+                    <td th:text="${report.id}"></td>
+                    <td th:text="${report.reportOwner}"></td>
+                    <td th:text="${report.department}"></td>
+                    <td th:text="${report.area}"></td>
+                    <td th:text="${report.signedAt != null} ? Sim : Não"></td>
+                    <td th:text="${#temporals.format(report.createdAt, 'dd/MM/yyyy')}"></td>
+                    <td>
+                        <a href="view-report.html" th:href="@{/admin/reports/visualizar/{id}(id = ${report.id})}"
+                            class="btn btn-warning btn-sm">Visualizar</a>
+                        <a href="#" class="btn btn-info btn-sm">Validar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
 </body>
+
 </html>
