@@ -53,7 +53,7 @@ public class Report {
     @OneToMany(mappedBy = "report", cascade = CascadeType.ALL)
     private List<ReportTask> tasks;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "report_kpis", joinColumns = @JoinColumn(name = "report_id"), inverseJoinColumns = @JoinColumn(name = "kpi_id"))
     private Set<Kpi> kpis;
 

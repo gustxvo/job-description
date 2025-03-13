@@ -29,4 +29,9 @@ public class ReportTask {
     @JoinColumn(name = "report_id")
     private Report report;
 
+    public ReportTask(String description, Report report) {
+        this.description = description;
+        this.report = report;
+    }
+
 }
