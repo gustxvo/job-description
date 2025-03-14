@@ -3,7 +3,6 @@ package br.com.gustavoalmeidacarvalho.jobdescription.app.employee;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -15,27 +14,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import br.com.gustavoalmeidacarvalho.jobdescription.app.mapper.ReportMapper;
 import br.com.gustavoalmeidacarvalho.jobdescription.app.report.dto.CreateReportDto;
 import br.com.gustavoalmeidacarvalho.jobdescription.domain.report.CompanyAffiliation;
-import br.com.gustavoalmeidacarvalho.jobdescription.domain.report.Kpi;
 import br.com.gustavoalmeidacarvalho.jobdescription.domain.report.Report;
 import br.com.gustavoalmeidacarvalho.jobdescription.domain.report.ReportService;
 import br.com.gustavoalmeidacarvalho.jobdescription.domain.report.ReportTask;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("/colaboradores/reports")
+@RequestMapping("/colaboradores")
 @RequiredArgsConstructor
 public class ReportEmployeeController {
 
     private final ReportService reportService;
     private final ReportMapper reportMapper;
 
-    @GetMapping("/registrar")
+    @GetMapping("/criar-relatorio")
     public String createReportForm(Model model) {
         model.addAttribute("report", new CreateReportDto());
         return "employees/form-report";
     }
 
-    @PostMapping("/registrar")
+    @PostMapping("/criar-relatorio")
     public String saveReport(Model model, Authentication authentication) {
         model.addAttribute("report", new CreateReportDto());
         Integer reportOwnerId = Integer.parseInt(authentication.getName());

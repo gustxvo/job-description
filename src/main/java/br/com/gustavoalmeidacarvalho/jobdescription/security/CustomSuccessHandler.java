@@ -19,14 +19,13 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(
             HttpServletRequest request,
             HttpServletResponse response,
-            Authentication authentication
-    ) throws IOException, ServletException {
+            Authentication authentication) throws IOException, ServletException {
         String redirectUrl = "";
 
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         for (GrantedAuthority grantedAuthority : authorities) {
             if (grantedAuthority.getAuthority().equals("EMPLOYEE")) {
-                redirectUrl = "/report";
+                redirectUrl = "/colaboradores/criar-relatorio";
                 break;
             } else if (grantedAuthority.getAuthority().equals("ADMIN")) {
                 redirectUrl = "/admin/colaboradores";

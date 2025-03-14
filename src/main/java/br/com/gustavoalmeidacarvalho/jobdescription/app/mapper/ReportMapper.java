@@ -1,6 +1,5 @@
 package br.com.gustavoalmeidacarvalho.jobdescription.app.mapper;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
