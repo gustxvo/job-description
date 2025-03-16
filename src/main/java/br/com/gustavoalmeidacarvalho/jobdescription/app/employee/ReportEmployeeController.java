@@ -3,6 +3,7 @@ package br.com.gustavoalmeidacarvalho.jobdescription.app.employee;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import br.com.gustavoalmeidacarvalho.jobdescription.app.mapper.ReportMapper;
 import br.com.gustavoalmeidacarvalho.jobdescription.app.report.dto.CreateReportDto;
 import br.com.gustavoalmeidacarvalho.jobdescription.domain.report.CompanyAffiliation;
+import br.com.gustavoalmeidacarvalho.jobdescription.domain.report.Kpi;
 import br.com.gustavoalmeidacarvalho.jobdescription.domain.report.Report;
 import br.com.gustavoalmeidacarvalho.jobdescription.domain.report.ReportService;
 import br.com.gustavoalmeidacarvalho.jobdescription.domain.report.ReportTask;
@@ -45,6 +47,10 @@ public class ReportEmployeeController {
         ReportTask task1 = new ReportTask("Task #1", reportEntity);
         ReportTask task2 = new ReportTask("Task #2", reportEntity);
         reportEntity.setTasks(List.of(task1, task2));
+
+        Kpi kpi1 = new Kpi("Kpi #1", BigDecimal.TEN, reportEntity);
+        Kpi kpi2 = new Kpi("Kpi #2", BigDecimal.TWO, reportEntity);
+        reportEntity.setKpis(Set.of(kpi1, kpi2));
 
         reportService.save(reportEntity);
         return "redirect:/login"; // Redirect to employee portal in the future
