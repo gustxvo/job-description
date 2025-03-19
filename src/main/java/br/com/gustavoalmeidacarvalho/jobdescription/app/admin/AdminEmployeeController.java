@@ -45,8 +45,7 @@ public class AdminEmployeeController {
     }
 
     @PostMapping("/registrar")
-    public String createEmployee(@ModelAttribute EmployeeDto employee, Model model) {
-        model.addAttribute("employee", employee);
+    public String createEmployee(@ModelAttribute EmployeeDto employee) {
         Employee employeeEntity = employeeMapper.createEmployeeEntity(employee);
         employeeService.save(employeeEntity);
         return "redirect:/admin/colaboradores";
