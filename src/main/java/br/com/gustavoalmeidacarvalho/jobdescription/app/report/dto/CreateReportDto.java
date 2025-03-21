@@ -2,28 +2,32 @@ package br.com.gustavoalmeidacarvalho.jobdescription.app.report.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import br.com.gustavoalmeidacarvalho.jobdescription.domain.report.CompanyAffiliation;
-import br.com.gustavoalmeidacarvalho.jobdescription.domain.report.Kpi;
-import br.com.gustavoalmeidacarvalho.jobdescription.domain.report.ReportTask;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class CreateReportDto {
 
+    private final Integer reportOwnerId;
+    private final String department;
     private CompanyAffiliation affiliation;
     private String area;
-    private List<ReportTask> tasks;
-    private Set<Kpi> kpis;
+    private List<TaskDto> tasks = new ArrayList<>();
+    private List<KpiDto> kpis = new ArrayList<>();
     private BigDecimal budgetEuro;
     private BigDecimal budgetReal;
     private LocalDate createdAt;
     private LocalDate signedAt;
 
+    public CreateReportDto(Integer reportOwnerId, String department) {
+        this.reportOwnerId = reportOwnerId;
+        this.department = department;
+    }
 }

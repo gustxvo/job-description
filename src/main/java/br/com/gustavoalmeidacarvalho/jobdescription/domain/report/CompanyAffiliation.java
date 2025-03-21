@@ -16,7 +16,7 @@ public enum CompanyAffiliation {
         this.affiliation = affiliation;
     }
 
-    public String getAffilite() {
+    public String getAffiliation() {
         return "ACME " + affiliation;
     }
 

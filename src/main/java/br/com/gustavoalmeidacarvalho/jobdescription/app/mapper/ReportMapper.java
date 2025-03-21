@@ -1,12 +1,18 @@
 package br.com.gustavoalmeidacarvalho.jobdescription.app.mapper;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
 import br.com.gustavoalmeidacarvalho.jobdescription.app.report.dto.CreateReportDto;
+import br.com.gustavoalmeidacarvalho.jobdescription.app.report.dto.KpiDto;
 import br.com.gustavoalmeidacarvalho.jobdescription.app.report.dto.ReportDto;
+import br.com.gustavoalmeidacarvalho.jobdescription.app.report.dto.TaskDto;
+import br.com.gustavoalmeidacarvalho.jobdescription.domain.report.Kpi;
 import br.com.gustavoalmeidacarvalho.jobdescription.domain.report.Report;
+import br.com.gustavoalmeidacarvalho.jobdescription.domain.report.ReportTask;
 import br.com.gustavoalmeidacarvalho.jobdescription.domain.user.employee.Employee;
 
 @Component
@@ -23,20 +29,39 @@ public class ReportMapper {
                 .toList();
     }
 
-    public Report createReportEntity(CreateReportDto reportDto, Integer reportOwnerId) {
-        Employee reportOwner = new Employee();
-        reportOwner.setUserId(reportOwnerId);
-        return Report.builder()
+    public Report createReportEntity(CreateReportDto reportDto) {
+        Employee reportOwner = new Employee(reportDto.getReportOwnerId());
+
+        Report report = Report.builder()
                 .reportOwner(reportOwner)
                 .affiliation(reportDto.getAffiliation())
                 .area(reportDto.getArea())
-                .tasks(reportDto.getTasks())
-                .kpis(reportDto.getKpis())
                 .budgetEuro(reportDto.getBudgetEuro())
                 .budgetReal(reportDto.getBudgetReal())
                 .createdAt(reportDto.getCreatedAt())
                 .signedAt(reportDto.getSignedAt())
                 .build();
+
+        List<ReportTask> tasks = tasksFromList(reportDto.getTasks(), report);
+        Set<Kpi> kpis = kpisFromDto(reportDto.getKpis(), report);
+        report.setTasks(tasks);
+        report.setKpis(kpis);
+
+        return report;
+    }
+
+    private List<ReportTask> tasksFromList(List<TaskDto> tasks, Report report) {
+        return tasks.stream()
+                .filter(task -> task.getDescription() != null)
+                .map(task -> new ReportTask(task.getDescription(), report))
+                .toList();
+    }
+
+    private Set<Kpi> kpisFromDto(List<KpiDto> kpis, Report report) {
+        return kpis.stream()
+                .filter(kpi -> kpi.getDescription() != null || kpi.getValue() != null)
+                .map(kpi -> new Kpi(kpi.getDescription(), kpi.getValue(), report))
+                .collect(Collectors.toSet());
     }
 
 }

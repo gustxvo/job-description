@@ -47,6 +47,11 @@ public class Employee extends User {
         super("EMPLOYEE");
     }
 
+    public Employee(Integer employeeId) {
+        super("EMPLOYEE");
+        super.setUserId(employeeId);
+    }
+
     public Employee(
             int userId,
             String password,
@@ -64,8 +69,7 @@ public class Employee extends User {
             BigDecimal salary,
             EmployeeStatus status,
             LocalDate admissionDate,
-            LocalDate terminationDate
-    ) {
+            LocalDate terminationDate) {
         super(userId, password, "EMPLOYEE", locked, enabled);
         this.name = name;
         this.rg = rg;
@@ -81,6 +85,7 @@ public class Employee extends User {
         this.admissionDate = admissionDate;
         this.terminationDate = terminationDate;
     }
+
     public Employee(
             String password,
             boolean locked,
@@ -97,8 +102,7 @@ public class Employee extends User {
             BigDecimal salary,
             EmployeeStatus status,
             LocalDate admissionDate,
-            LocalDate terminationDate
-    ) {
+            LocalDate terminationDate) {
         super(password, "EMPLOYEE", locked, enabled);
         this.name = name;
         this.rg = rg;
