@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Create Report</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Employees in the company" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/dist/css/bootstrap.min.css}" />
+    <script th:src="@{/webjars/bootstrap/dist/js/bootstrap.min.js}"></script>
+</head>
+
+<body>
+    <div th:replace="~{fragments/admin-navbar}"></div>
+    <main class="container my-5 py-5" th:object="${report}">
+        <h2 class="mb-4">Ver Relatório</h2>
+        <form class="d-flex flex-column gap-3" action="#" th:action="@{/admin/criar-relatorio}" method="post">
+            <div class="row g-2">
+                <div class="col-7">
+                    <label class="form-label">1. Empresa</label>
+                    <input type="text" th:text="${affiliate.affiliation}" readonly></p>
+                    </select>
+                </div>
+                <div class="col-5">
+                    <label class="form-label">2. Data de Criação</label>
+                    <input type="date" class="form-control" name="createdAt"
+                        th:value="${#dates.format(#dates.createToday(), 'yyyy-MM-dd')}"
+                        th:attr="max=${#dates.format(#dates.createToday(), 'yyyy-MM-dd')}" required>
+                </div>
+            </div>
+
+            <div class="row g-2">
+                <div class="col-7">
+                    <label class="form-label">3. Área</label>
+                    <input th:field="*{area}" type="text" class="form-control" name="area"
+                        placeholder="Digite a área responsável" readonly>
+                </div>
+                <div class="col-5">
+                    <label class="form-label">4. Departamento</label>
+                    <input th:value="*{department}" type="text" class="form-control" name="department"
+                        placeholder="Departamento" readonly>
+                </div>
+            </div>
+
+            <div class="row">
+                <label class="form-label">5. Tarefas</label>
+                <div class="d-flex flex-column gap-2" th:each="task, iter : ${report.tasks}">
+                    <div class="d-flex gap-2">
+                        <label th:text="'T, ${iter.index + 1}' +">T1</label>
+                        <textarea type="text" class="form-control" th:text="${task.description}"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <label class="form-label">6. KPIs</label>
+                <div class="d-flex flex-column gap-2" th:each="kpi, iter : ${report.kpis}">
+                    <div class="d-flex gap-2">
+                        <label th:text="'T, ${iter.index + 1}' +">K1</label>
+                        <textarea type="text" class="form-control" th:text="${kpi.description}"></textarea>
+                        <input type="text" class="form-control" th:text="${kpi.value}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <label class="form-label">7. Orçamento em Euros €</label>
+                    <input th:field="*{budgetEuro}" type="text" class="form-control" placeholder="€1000" readonly>
+                </div>
+                <div class="col-6">
+                    <label class="form-label">8. Orçamento em Reais R$</label>
+                    <input th:field="*{budgetReal}" type="text" class="form-control" placeholder="R$10000" readonly>
+                </div>
+            </div>
+
+            <div class="row">
+                <label class="mb-3"> 19. Assinaturas: </label>
+
+                <div class="col-md-6">
+                    <hr class="w-75 mt-5">
+                    <p>Titular do cargo</p>
+                </div>
+
+                <div class="col-md-6">
+                    <hr class="w-75 mt-5">
+                    <p>Superior Direto</p>
+                </div>
+            </div>
+
+            <div class="align-self-end">
+                <a href="home.html" th:href="@{/admin/colaboradores}" class="btn btn-outline-danger">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Registrar</button>
+            </div>
+        </form>
+
+    </main>
+</body>
+
+</html>

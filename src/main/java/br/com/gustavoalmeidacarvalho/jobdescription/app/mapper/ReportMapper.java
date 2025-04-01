@@ -1,5 +1,7 @@
 package br.com.gustavoalmeidacarvalho.jobdescription.app.mapper;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -19,8 +21,19 @@ import br.com.gustavoalmeidacarvalho.jobdescription.domain.user.employee.Employe
 public class ReportMapper {
 
     public ReportDto fromEntity(Report report) {
+        List<TaskDto> tasks = report.getTasks().stream()
+                .map(task -> new TaskDto(task.getDescription()))
+                .toList();
+
+        Set<KpiDto> kpis = report.getKpis().stream()
+                .map(kpi -> new KpiDto(kpi.getDescription(), kpi.getValue()))
+                .collect(Collectors.toSet());
+
+        System.out.println(report);
         return new ReportDto(report.getId(), report.getReportOwner().getName(), report.getReportOwner().getDepartment(),
-                report.getArea(), report.getSignedAt(), report.getCreatedAt());
+                report.getAffiliation(),
+                report.getArea(), tasks, kpis, report.getBudgetEuro(), report.getBudgetReal(), report.getSignedAt(),
+                report.getCreatedAt());
     }
 
     public List<ReportDto> fromEntityList(List<Report> reports) {
