@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<ul class="children" th:fragment="children(subordinates)">
+    <li th:each="user : ${subordinates}">
+        <div class="node">
+            <span>👤</span>
+            <span th:text="${user.name}">User</span>
+        </div>
+        <div th:if="${user.subordinates != null}">
+            <div th:replace="this :: children(${user.subordinates})"></div>
+        </div>
+    </li>
+</ul>
+
+</html>

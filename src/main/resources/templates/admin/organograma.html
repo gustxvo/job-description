@@ -1,18 +1,124 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
     <title>Organograma</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="description" content="Organograma dos funcionários da empresa"/>
-    <meta name="viewport" content="width=device-width"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/dist/css/bootstrap.min.css}"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Organograma dos funcionários da empresa" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/dist/css/bootstrap.min.css}" />
     <script th:src="@{/webjars/bootstrap/dist/js/bootstrap.min.js}"></script>
+    <style>
+        main {
+            overflow-x: auto;
+        }
+
+        .tree ul {
+            padding-top: 20px;
+            position: relative;
+            transition: all 0.5s;
+            list-style: none;
+            min-width: max-content;
+        }
+
+        .tree li {
+            float: left;
+            text-align: center;
+            list-style-type: none;
+            position: relative;
+            padding: 20px 5px 0 5px;
+            transition: all 0.5s;
+        }
+
+        .tree li::before,
+        .tree li::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 50%;
+            border-top: 1px solid #ccc;
+            width: 50%;
+            height: 20px;
+        }
+
+        .tree li::after {
+            right: auto;
+            left: 50%;
+            border-left: 1px solid #ccc;
+        }
+
+        .tree li:only-child::after,
+        .tree li:only-child::before {
+            display: none;
+        }
+
+        .tree li:only-child {
+            padding-top: 0;
+        }
+
+        .tree li:first-child::before,
+        .tree li:last-child::after {
+            border: 0 none;
+        }
+
+        .tree li:last-child::before {
+            border-right: 1px solid #ccc;
+            border-radius: 0 5px 0 0;
+        }
+
+        .tree li:first-child::after {
+            border-radius: 5px 0 0 0;
+        }
+
+        .parent ul::after {
+            content: '';
+            position: absolute;
+            top: 0px;
+            left: 50%;
+            width: 0;
+            height: 20px;
+            border-left: 2px solid #ccc;
+        }
+
+        .children ul::before {
+            content: '';
+            position: absolute;
+            top: 0px;
+            left: 50%;
+            width: 0;
+            height: 20px;
+            border-left: 2px solid #ccc;
+        }
+
+        .node {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            background: #fff;
+            display: inline-block;
+            min-width: 100px;
+        }
+    </style>
+
 </head>
+
 <body>
-<div th:replace="~{fragments/admin-navbar :: navbar (activePage='organograma')}"></div>
-<main class="my-5">
-    <h1>Organograma</h1>
-</main>
+    <div th:replace="~{fragments/admin-navbar :: navbar (activePage='organograma')}"></div>
+    <h1 class="my-5 p-5 mb-2 text-center">Organograma</h1>
+    <main class="tree p-5">
+        <ul class="parent">
+            <li>
+                <div class="node">
+                    <span>👤</span>
+                    <span th:text="${employees[0].name}"></span>
+                </div>
+                <div th:if="${employees[0].subordinates != null}">
+                    <div th:replace="~{fragments/subtree-fragment :: children(${employees[0].subordinates})}"></div>
+                </div>
+            </li>
+        </ul>
+    </main>
 </body>
+
 </html>
